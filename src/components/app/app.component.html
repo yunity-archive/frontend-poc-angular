@@ -1,0 +1,37 @@
+<md-sidenav-container>
+
+  <md-sidenav #sidenav>
+    <md-list>
+      <md-list-item>Item 1</md-list-item>
+      <md-list-item>Item 2</md-list-item>
+      <md-list-item>Item 3</md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <md-toolbar>
+    <button md-button (click)="sidenav.toggle()">
+      <md-icon>list</md-icon>
+    </button>
+    <span>angular</span>
+    <span class="fill-remaining-space"></span>
+    <span>Foo</span>
+  </md-toolbar>
+
+  <div *ngIf="isLoading$ | async">
+    <h2>Loading groups</h2>
+    <md-progress-bar mode="indeterminate"></md-progress-bar>
+  </div>
+
+  <md-card class="group-card" *ngFor="let group of list$ | async">
+    <md-card-header>
+      <md-card-title>{{ group.name }}</md-card-title>
+      <md-card-subtitle>{{ group.members.length }}</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <p>
+        {{ group.public_description }}
+      </p>
+    </md-card-content>
+  </md-card>
+
+</md-sidenav-container>
